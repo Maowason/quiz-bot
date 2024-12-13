@@ -11,8 +11,9 @@ def generate_bot_responses(message, session):
         session["score"] = 0  # Initialize score
         session.save()
         bot_responses.append(BOT_WELCOME_MESSAGE)
-        next_question, _ = get_next_question(-1)
+        next_question, next_question_id = get_next_question(-1)
         bot_responses.append(next_question)
+        session["current_question_id"] = 0
         return bot_responses
 
     # Validate and record the current answer
